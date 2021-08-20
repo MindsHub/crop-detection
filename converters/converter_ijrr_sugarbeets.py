@@ -24,9 +24,7 @@ def getRanges(arr):
 	return res
 
 def resizeImage(image):
-	image = image[0:966, 0:1288]
-	image = cv2.resize(image, (480, 360), interpolation = cv2.INTER_NEAREST)
-	return image
+	return cv2.resize(image, (480, 352), interpolation=cv2.INTER_NEAREST)
 
 
 files = []

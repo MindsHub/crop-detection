@@ -1,6 +1,8 @@
 ## Repository file tree
 
-- The `crop_detection` folder is a python module to import
+- The `crop_detection/` folder is a python module to import
+- The `converters/` folder contains scripts useful to build a dataset in the `dataset/` folder
+
 
 ## Model name
 

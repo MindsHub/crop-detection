@@ -25,6 +25,7 @@ for type, count in TYPES.items():
 	to = TO.format(type)
 	for j in range(count):
 		image = cv2.imread(files[i+j], cv2.IMREAD_UNCHANGED)
+		# TODO resize to 480x352
 		image[image > 0] = 1
 		filename = to + os.path.split(files[i+j])[1]
 		cv2.imwrite(filename, image)
