@@ -1,1 +1,1 @@
-from big_image_segmentation import *
+from .big_image_segmentation import *
