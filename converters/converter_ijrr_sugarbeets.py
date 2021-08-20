@@ -6,7 +6,7 @@ import cv2
 RGB_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/images/rgb/"
 IMAP_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotations/dlp/iMapCleaned/"
 COLOR_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotations/dlp/colorCleaned/"
-TO = "./dataset/{}/{}/"
+TO = "../dataset/{}/{}/"
 TYPES = {
 	"train": 1000,
 	"test": 250,

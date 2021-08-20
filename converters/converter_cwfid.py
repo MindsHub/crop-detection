@@ -6,7 +6,7 @@ import numpy as np
 
 IMAGES_PATH = "datasets_raw/cwfid/images/"
 MASKS_PATH = "datasets_raw/cwfid/masks/"
-TO = "./dataset/{}/{}/"
+TO = "../dataset/{}/{}/"
 TYPES = {
 	0: "train",
 	1: "test"
