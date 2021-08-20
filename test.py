@@ -8,9 +8,9 @@ INPUT_IMAGES = [
 	"./dataset/test/images/A_000504.png",
 	"./dataset/test/images/bonirob_2016-05-23-10-57-33_4_frame129.png",
 	"./dataset/test/images/cwfid_001_scaled_.png",
-#	"../testing_images/x.jpg",
-#	"../testing_images/y.jpg",
-#	"../testing_images/z.jpg",
+#	"./testing_images/x.jpg",
+#	"./testing_images/y.jpg",
+#	"./testing_images/z.jpg",
 ]
 CHECKPOINT_PATH = "./checkpoint_352x480_dataset2"
 EPOCHS = [10]
