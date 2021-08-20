@@ -3,7 +3,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1" # do not use the gpu
 from unet_model import unetXceptionModel
 from sequence import CropWeedsSequence
-import keras
+from tensorflow import keras
 import glob
 
 # config
