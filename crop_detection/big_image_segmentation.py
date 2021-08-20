@@ -6,13 +6,6 @@ import os
 DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model_352x480_2_10.hd5"
 
 def segmentImage(imageOrImagePath, modelPath=DEFAULT_MODEL_PATH, padding=20):
-	model = keras.models.load_model(modelPath)
-	modelInputShape = model.layers[0].input_shape[0][1:3]
-	modelOutputShape = model.layers[-1].output_shape[1:3]
-	modelHeight, modelWidth = modelOutputShape
-	if padding * 2 >= min(modelHeight, modelWidth):
-		raise ValueError(f"The padding {padding} is too big for model shape {modelOutputShape}")
-
 	if isinstance(imageOrImagePath, (str, bytes, os.PathLike,)):
 		image = cv2.imread(imageOrImagePath)
 		if image is None:
@@ -21,6 +14,13 @@ def segmentImage(imageOrImagePath, modelPath=DEFAULT_MODEL_PATH, padding=20):
 		image = np.asarray(imageOrImagePath)
 		if (image.dtype != np.uint8):
 			raise ValueError(f"\"imageOrImagePath\" image dtype is not uint8: {image.dtype}")
+
+	model = keras.models.load_model(modelPath)
+	modelInputShape = model.layers[0].input_shape[0][1:3]
+	modelOutputShape = model.layers[-1].output_shape[1:3]
+	modelHeight, modelWidth = modelOutputShape
+	if padding * 2 >= min(modelHeight, modelWidth):
+		raise ValueError(f"The padding {padding} is too big for model shape {modelOutputShape}")
 
 	imageShape = np.shape(image)[:2]
 	imageHeight, imageWidth = imageShape
