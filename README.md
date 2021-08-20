@@ -2,6 +2,8 @@
 
 This repository contains a model trained to detect crops and vegetation in an image of a vegetable-garden ("orto" in italiano) taken perpendicular to the terrain.
 
+<img width="500px" src="./example_result.png"/>
+
 ## Repository file tree
 
 - The `crop_detection/` folder is a python module to import
