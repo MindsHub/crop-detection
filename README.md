@@ -1,6 +1,6 @@
 # Crop detection
 
-This repository contains a model trained to detect crops and vegetation in an image of a vegetable-garden ("orto" in italiano) taken perpendicular to the terrain.
+This repository contains an AI model trained to detect crops and vegetation in images of vegetable-gardens ("orto" in italiano) taken perpendicular to the terrain.
 
 <img width="500px" src="./example_result.png"/>
 
