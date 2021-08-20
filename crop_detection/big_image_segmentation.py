@@ -1,8 +1,11 @@
 import keras
 import numpy as np
 import cv2
+import os
 
-def segmentImage(modelPath, imagePath, padding):
+DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model_352x480_2_10.hd5"
+
+def segmentImage(imageOrImagePath, modelPath=DEFAULT_MODEL_PATH, padding=20):
 	model = keras.models.load_model(modelPath)
 	modelInputShape = model.layers[0].input_shape[0][1:3]
 	modelOutputShape = model.layers[-1].output_shape[1:3]
@@ -10,9 +13,15 @@ def segmentImage(modelPath, imagePath, padding):
 	if padding * 2 >= min(modelHeight, modelWidth):
 		raise ValueError(f"The padding {padding} is too big for model shape {modelOutputShape}")
 
-	image = cv2.imread(imagePath)
-	if image is None:
-		raise ValueError(f"Image not found: {imagePath}")
+	if isinstance(imageOrImagePath, (str, bytes, os.PathLike,)):
+		image = cv2.imread(imageOrImagePath)
+		if image is None:
+			raise ValueError(f"Image not found: {imageOrImagePath}")
+	else:
+		image = np.asarray(imageOrImagePath)
+		if (image.dtype != np.uint8):
+			raise ValueError(f"\"imageOrImagePath\" image dtype is not uint8: {image.dtype}")
+
 	imageShape = np.shape(image)[:2]
 	imageHeight, imageWidth = imageShape
 	if imageHeight < modelHeight or imageWidth < modelWidth:
@@ -69,8 +78,8 @@ if __name__ == "__main__":
 	IMAGES = ["bigimage1.png", "bigimage2.jpg", "bigimage3.png", "bigimage4.jpg", "bigimage5.png"]
 	for image in IMAGES:
 		segmented = segmentImage(
+			imageOrImagePath="../training/testing_images/" + image,
 			modelPath="../training/checkpoint_352x480_dataset2/model_7.hd5",
-			imagePath="../training/testing_images/" + image,
 			padding=20
 		)
 
