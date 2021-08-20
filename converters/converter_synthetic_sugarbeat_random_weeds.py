@@ -4,7 +4,7 @@ import cv2
 import os
 
 FROM = "datasets_raw/synthetic_sugarbeat_random_weeds/gt/B_*.png"
-TO = "../dataset/{}/labels/"
+TO = "../training/dataset/{}/labels/"
 TYPES = {
 	"train": 500,
 	"test": 125,

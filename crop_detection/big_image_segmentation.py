@@ -69,8 +69,8 @@ if __name__ == "__main__":
 	IMAGES = ["bigimage1.png", "bigimage2.jpg", "bigimage3.png", "bigimage4.jpg", "bigimage5.png"]
 	for image in IMAGES:
 		segmented = segmentImage(
-			modelPath="./checkpoint_352x480_dataset2/model_7.hd5",
-			imagePath="../testing_images/" + image,
+			modelPath="../training/checkpoint_352x480_dataset2/model_7.hd5",
+			imagePath="../training/testing_images/" + image,
 			padding=20
 		)
 

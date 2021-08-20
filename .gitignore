@@ -1,5 +1,6 @@
 .vscode/
 checkpoint*
-__pycache__/ 
+__pycache__/
 dataset/
+datasets_raw/
 testing_images/
