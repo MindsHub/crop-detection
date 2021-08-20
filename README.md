@@ -19,7 +19,7 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 
 [Bonirob dataset - sugarbeets (5TB)](http://www.ipb.uni-bonn.de/data/sugarbeets2016/)
 
-[Aberystwyth Leaf Evaluation Dataset (62GB)](https://zenodo.org/record/168158#.WDcbSB8zpZU)
+[~~Aberystwyth Leaf Evaluation Dataset (62GB)~~](https://zenodo.org/record/168158#.WDcbSB8zpZU) not useful but still noteworthy
 
 [CWFID - Crop Weed Field Image Dataset - carrots (80MB)](https://github.com/cwfid/dataset) - [paper](https://projet.liris.cnrs.fr/imagine/pub/proceedings/ECCV-2014/workshops/w23/paper26.pdf)
 
