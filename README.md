@@ -1,0 +1,27 @@
+# Sources
+
+## Datasets
+
+[Synthetic dataset - sugarbeets](http://www.diag.uniroma1.it/~labrococo/fds/syntheticdatasets.html) - [paper](http://www.diag.uniroma1.it//~pretto/papers/dpgp_IROS2017.pdf)
+
+[Bonirob dataset - sugarbeets (5TB)](http://www.ipb.uni-bonn.de/data/sugarbeets2016/)
+
+[Aberystwyth Leaf Evaluation Dataset (62GB)](https://zenodo.org/record/168158#.WDcbSB8zpZU)
+
+[CWFID - Crop Weed Field Image Dataset - carrots (80MB)](https://github.com/cwfid/dataset) - [paper](https://projet.liris.cnrs.fr/imagine/pub/proceedings/ECCV-2014/workshops/w23/paper26.pdf)
+
+## Tutorials & techniques
+
+[SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation](https://arxiv.org/pdf/1511.00561.pdf)
+
+[~~SegNet tutorial 1 (custom caffe)~~](http://mi.eng.cam.ac.uk/~agk34/demo_segnet/tutorial.html)
+- [Repo with models](https://github.com/alexgkendall/SegNet-Tutorial/tree/master/Models)
+- [Caffe - Deep learning framework](http://caffe.berkeleyvision.org) - `sudo apt install caffe-cpu`
+
+[~~SegNet tutorial 2 (keras)~~](https://github.com/0bserver07/Keras-SegNet-Basic)
+
+[Segmentation tutorial 3 (keras-segmentation)](https://www.kaggle.com/bulentsiyah/deep-learning-based-semantic-segmentation-keras)
+
+[Segmentation tutorial 4 (custom keras)](https://keras.io/examples/vision/oxford_pets_image_segmentation/)
+
+[~~Fast and Accurate Crop and Weed Identification with Summarized Train Sets for Precision Agriculture~~](https://www.diag.uniroma1.it/~pretto/papers/pnp_ias2016.pdf)
