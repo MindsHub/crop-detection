@@ -1,3 +1,7 @@
+## Repository file tree
+
+- The `crop_detection` folder is a python module to import
+
 ## Model name
 
 The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.hd5`
