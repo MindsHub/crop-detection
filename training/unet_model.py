@@ -2,6 +2,10 @@ import keras
 from keras import layers
 
 def unetXceptionModel(img_size, num_classes):
+	"""
+	Taken from https://keras.io/examples/vision/oxford_pets_image_segmentation/
+	"""
+
 	inputs = keras.Input(shape=img_size + (3,))
 
 	### [First half of the network: downsampling inputs] ###

@@ -34,7 +34,7 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 
 This is the actually used tutorial and model: [Segmentation tutorial 4 (custom keras)](https://keras.io/examples/vision/oxford_pets_image_segmentation/)
 
-#### Others:
+#### Others (not used):
 
 [~~SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation~~](https://arxiv.org/pdf/1511.00561.pdf)
 
