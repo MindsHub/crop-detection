@@ -1,3 +1,0 @@
-numpy >=1.20.0, <1.21.0 # note: pip will say this is incompatible with tensorflow, but older versions don't work on raspberry pi
-tensorflow
-keras

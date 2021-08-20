@@ -20,11 +20,9 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 
 ## Requirements
 
-```sh
-python3 -m pip install -r requirements.txt
-sudo apt-get install libatlas-base-dev # on raspberry pi
-# install opencv
-```
+- Install OpenCV with python3 support (`import cv2` must work)
+- Install tensorflow >=2.5.0 (on raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin))
+- You *may* need this on raspberry: `sudo apt install libatlas-base-dev`
 
 ## Sources
 
