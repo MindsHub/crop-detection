@@ -13,10 +13,11 @@ assert IMAGE_SIZE[1] % 32 == 0
 NUM_CLASSES = 2
 CHECKPOINT_PATH = "./checkpoint_352x480_dataset2"
 
-# hyperparameters
-BATCH_SIZE = 30
-EPOCHS = 3
-LEARNING_RATE = 0.00005
+# hyperparameters (batchSize=15, learningRate=0.001) are good for
+# the first 5 epochs, then use (batchSize=30, learningRate=0.0001)
+BATCH_SIZE = 15
+EPOCHS = 5
+LEARNING_RATE = 0.001
 
 # calculate epochs already done and load model
 epochsAlreadyDone = sorted(glob.glob(CHECKPOINT_PATH + "/model_*.hd5"))
