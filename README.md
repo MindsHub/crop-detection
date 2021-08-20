@@ -18,6 +18,14 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 	- `2` if the dataset used to train is composed of the *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds* and *cwfid* datasets
 - `EPOCH` is the number of epochs the model was trained for, e.g. `10`
 
+## Requirements
+
+```sh
+python3 -m pip install -r requirements.txt
+sudo apt-get install libatlas-base-dev # on raspberry pi
+# install opencv
+```
+
 ## Sources
 
 ### Datasets
