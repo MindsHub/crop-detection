@@ -1,6 +1,15 @@
-# Sources
+## Model name
 
-## Datasets
+The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.hd5`
+- `INPUTHEIGHTxINPUTWIDTH` represents the size of the input image, e.g. `352x480`
+- `DATASETVERSION` is:
+	- `1` if the dataset used to train is composed of the *ijrr_sugarbeets* and *synthetic_sugarbeat_random_weeds* datasets
+	- `2` if the dataset used to train is composed of the *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds* and *cwfid* datasets
+- `EPOCH` is the number of epochs the model was trained for, e.g. `10`
+
+## Sources
+
+### Datasets
 
 [Synthetic dataset - sugarbeets](http://www.diag.uniroma1.it/~labrococo/fds/syntheticdatasets.html) - [paper](http://www.diag.uniroma1.it//~pretto/papers/dpgp_IROS2017.pdf)
 
@@ -10,7 +19,7 @@
 
 [CWFID - Crop Weed Field Image Dataset - carrots (80MB)](https://github.com/cwfid/dataset) - [paper](https://projet.liris.cnrs.fr/imagine/pub/proceedings/ECCV-2014/workshops/w23/paper26.pdf)
 
-## Tutorials & techniques
+### Tutorials & techniques
 
 [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation](https://arxiv.org/pdf/1511.00561.pdf)
 
