@@ -4,6 +4,15 @@ import cv2
 import os
 
 _DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model_352x480_2_10.hd5"
+_models = {}
+
+def _getModel(modelPath):
+	global _models
+	if modelPath in _models:
+		return _models[modelPath]
+	else:
+		return _models[modelPath] = keras.models.load_model(modelPath)
+
 
 def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 	if isinstance(imageOrImagePath, (str, bytes, os.PathLike,)):
@@ -15,7 +24,7 @@ def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 		if (image.dtype != np.uint8):
 			raise ValueError(f"\"imageOrImagePath\" image dtype is not uint8: {image.dtype}")
 
-	model = keras.models.load_model(modelPath)
+	model = _getModel(modelPath)
 	modelInputShape = model.layers[0].input_shape[0][1:3]
 	modelOutputShape = model.layers[-1].output_shape[1:3]
 	modelHeight, modelWidth = modelOutputShape
