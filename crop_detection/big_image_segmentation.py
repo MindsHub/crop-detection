@@ -8,11 +8,9 @@ _models = {}
 
 def _getModel(modelPath):
 	global _models
-	if modelPath in _models:
-		return _models[modelPath]
-	else:
-		return _models[modelPath] = keras.models.load_model(modelPath)
-
+	if modelPath not in _models:
+		_models[modelPath] = keras.models.load_model(modelPath)
+	return _models[modelPath]
 
 def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 	if isinstance(imageOrImagePath, (str, bytes, os.PathLike,)):
