@@ -4,10 +4,12 @@ This repository contains an AI model trained to detect crops and vegetation in i
 
 <img width="500px" src="./example_result.png"/>
 
-## Repository file tree
+## Repository file tree & how to install the module
 
-- The `crop_detection/` folder is a python module to import
+- The `crop_detection/` folder is a Python 3 module to import
 - The `converters/` folder contains scripts useful to build a dataset in the `dataset/` folder
+- The `setup.py` file can be used to **install** the module: just run `python3 -m pip install .` in the root directory
+  - Note: `pip` may give some warnings that can be solved with `--use-feature=in-tree-build`, but they are not relevant
 
 ## Model name
 
@@ -20,7 +22,7 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 
 ## Requirements
 
-- Install OpenCV with python3 support (`import cv2` must work)
+- Install OpenCV with Python 3 support (`import cv2` must work)
 - Install tensorflow >=2.5.0 (on raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin))
 - You *may* need this on raspberry: `sudo apt install libatlas-base-dev`
 
