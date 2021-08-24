@@ -9,7 +9,7 @@ setup(
         "": ["model*/*", "model*/*/*"]
     },
     install_requires = [
-        'tensorflow>=2.5.0',
+        'tensorflow>=2.4.0',
         'opencv-python'
     ]
 )
