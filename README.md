@@ -1,13 +1,19 @@
 # Crop detection
 
-This repository contains an AI model trained to detect crops and vegetation in images of vegetable-gardens ("orto" in italiano) taken perpendicular to the terrain.
+This repository contains a keras AI model trained to detect crops and vegetation in images of vegetable-gardens ("orto" in italiano) taken perpendicular to the terrain. The model is accessible via an installable python module: `crop_detection`.
 
 <img width="500px" src="./example_result.png"/>
 
-## Repository file tree & how to install the module
+## Repository file tree
 
 - The `crop_detection/` folder is a Python 3 module to import
 - The `converters/` folder contains scripts useful to build a dataset in the `dataset/` folder
+
+## Requirements & module installation
+
+- Install OpenCV with Python 3 support (`import cv2` must work)
+- Install tensorflow >=2.5.0 (on raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin))
+- You *may* need this on raspberry: `sudo apt install libatlas-base-dev`
 - The `setup.py` file can be used to **install** the module: just run `python3 -m pip install .` in the root directory
   - Note: `pip` may give some warnings that can be solved with `--use-feature=in-tree-build`, but they are not relevant
 
@@ -19,12 +25,6 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 	- `1` if the dataset used to train is composed of the *ijrr_sugarbeets* and *synthetic_sugarbeat_random_weeds* datasets
 	- `2` if the dataset used to train is composed of the *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds* and *cwfid* datasets
 - `EPOCH` is the number of epochs the model was trained for, e.g. `10`
-
-## Requirements
-
-- Install OpenCV with Python 3 support (`import cv2` must work)
-- Install tensorflow >=2.5.0 (on raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin))
-- You *may* need this on raspberry: `sudo apt install libatlas-base-dev`
 
 ## Sources
 
