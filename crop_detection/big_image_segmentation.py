@@ -3,9 +3,9 @@ import numpy as np
 import cv2
 import os
 
-DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model_352x480_2_10.hd5"
+_DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model_352x480_2_10.hd5"
 
-def segmentImage(imageOrImagePath, modelPath=DEFAULT_MODEL_PATH, padding=20):
+def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 	if isinstance(imageOrImagePath, (str, bytes, os.PathLike,)):
 		image = cv2.imread(imageOrImagePath)
 		if image is None:
