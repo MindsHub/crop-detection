@@ -10,7 +10,7 @@ This repository contains a keras AI model trained to detect crops and vegetation
 - Install tensorflow >=2.5.0 (on raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin))
 - You *may* need this on raspberry: `sudo apt install libatlas-base-dev`
 - The `setup.py` file can be used to **install** the module: just run `python3 -m pip install .` in the root directory
-  - Note: `pip` may give some warnings that can be solved with `--use-feature=in-tree-build`, but they are not relevant
+  - Note: `pip` may give some warnings that can be solved by appending `--use-feature=in-tree-build` to the command, but they can be ignored
 
 ## Repository file tree
 
