@@ -6,11 +6,15 @@ This repository contains a keras AI model trained to detect crops and vegetation
 
 ## Requirements & module installation
 
-- Install OpenCV with Python 3 support (`import cv2` must work, on Raspberry compile it from source)
-- Install tensorflow >=2.4.0 (on Raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin))
+- Install OpenCV with Python 3 support
+  - `import cv2` must work without throwing exceptions
+  - on Raspberry either compile from source, or `sudo apt-get install libatlas3-base` and then let `setup.py` install `opencv-python` 
+- Install TensorFlow >=2.4.0
+  - on Raspberry use [this repo](https://github.com/bitsy-ai/tensorflow-arm-bin)
+  - Don't worry if TensorFlow and OpenCV require different versions of numpy, just make sure the latest one is installed and ignore pip warnings
 - You *may* need this on raspberry: `sudo apt install libatlas-base-dev`
 - The `setup.py` file can be used to **install** the module: just run `python3 -m pip install .` in the root directory
-  - It will take care of installing the needed dependencies (OpenCV and tensorflow), but on Raspberry it won't work as explained above
+  - It will take care of installing the needed dependencies (OpenCV and TensorFlow), but on Raspberry it won't work as explained above
   - Note: `pip` may give some warnings that can be solved by appending `--use-feature=in-tree-build` to the command, but they can be ignored
 
 ## Repository file tree
