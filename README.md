@@ -31,6 +31,10 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 	- `2` if the dataset used to train is composed of the *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds* and *cwfid* datasets
 - `EPOCH` is the number of epochs the model was trained for, e.g. `10`
 
+## Using the converters
+
+Choose some datasets you want to use from the list below, then download them and unpack them in the `datasets_raw/` subfolder (which you will need to create) in the repo's root. Then you can run `python3 converters/converter_DATASET_NAME.py` to create (part of) a training dataset with both `train/` and `test/` images in the `dataset/` subfolder.
+
 ## Sources
 
 ### Datasets
