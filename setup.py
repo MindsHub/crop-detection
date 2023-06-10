@@ -18,7 +18,7 @@ setup(
     },
     install_requires = [
         'tensorflow>=2.4.0',
-        # opencv is already installed (maybe my compiling, so prevent installing a duplicate opencv-python)
+        # opencv is already installed (maybe by compiling, so prevent installing a duplicate opencv-python)
     ] if _opencv_installed else [
         'tensorflow>=2.4.0',
         'opencv-python',
