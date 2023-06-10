@@ -3,16 +3,18 @@ import random
 import cv2
 import os
 import numpy as np
+from setup_dataset_path import *
 
 IMAGES_PATH = "datasets_raw/cwfid/images/"
 MASKS_PATH = "datasets_raw/cwfid/masks/"
-TO = "../training/dataset/{}/{}/"
+
 TYPES = {
-	0: "train",
-	1: "test"
+	0: TRAIN,
+	1: TEST,
+	# the 2 is skipped
 }
 TYPES_DISTRIBUTION = [0] * 1000 + [1] * 250 + [2] * 10
-random.shuffle(TYPES_DISTRIBUTION)
+random.Random(4).shuffle(TYPES_DISTRIBUTION)
 
 files = []
 for imageFile in sorted(glob.glob(IMAGES_PATH + "*.png")):
@@ -60,13 +62,13 @@ for imageFile, maskFile, number in files:
 	mask = np.array(mask == 0, dtype=np.uint8)
 
 	for extractedImage, extractedMask, filename in extractImagesMasks(image, mask, number):
-		type = TYPES_DISTRIBUTION[i]
-		print(i, type, filename)
+		typ = TYPES_DISTRIBUTION[i]
+		print(f"{i: 4} / {len(TYPES_DISTRIBUTION)} - {TYPES[typ] if typ in TYPES else '': >5} - {filename}")
 		i += 1
-		if type == 2:
+		if typ == 2:
 			continue
-		type = TYPES[type]
+		typ = TYPES[typ]
 
-		cv2.imwrite(TO.format(type, "images") + filename, extractedImage)
-		cv2.imwrite(TO.format(type, "labels") + filename, extractedMask)
+		cv2.imwrite(DATASET_PATH.format(typ, IMAGES) + filename, extractedImage)
+		cv2.imwrite(DATASET_PATH.format(typ, LABELS) + filename, extractedMask)
 

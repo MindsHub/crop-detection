@@ -2,14 +2,14 @@ import glob
 import os
 import shutil
 import cv2
+from setup_dataset_path import *
 
 RGB_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/images/rgb/"
 IMAP_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotations/dlp/iMapCleaned/"
 COLOR_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotations/dlp/colorCleaned/"
-TO = "../training/dataset/{}/{}/"
 TYPES = {
-	"train": 1000,
-	"test": 250,
+	TRAIN: 1000,
+	TEST: 250,
 }
 
 def getRanges(arr):
@@ -37,16 +37,17 @@ for rgbFile in sorted(glob.glob(RGB_PATH + "*.png")):
 print(len(files))
 
 i = 0
-for type, count in TYPES.items():
+for typ, count in TYPES.items():
 	for j in range(count):
-		print(j)
 		rgbFile, imapFile, filename = files[i+j]
+		print(f"{i+j: 4} / {sum(TYPES.values())} - {typ} - {filename}")
+
 		rgb = cv2.imread(rgbFile, cv2.IMREAD_UNCHANGED)
 		rgb = resizeImage(rgb)
-		cv2.imwrite(TO.format(type, "images") + filename, rgb)
+		cv2.imwrite(DATASET_PATH.format(typ, IMAGES) + filename, rgb)
 
 		imap = cv2.imread(imapFile, cv2.IMREAD_UNCHANGED)
 		imap = resizeImage(imap)
 		imap[imap > 0] = 1
-		cv2.imwrite(TO.format(type, "labels") + filename, imap)
+		cv2.imwrite(DATASET_PATH.format(typ, LABELS) + filename, imap)
 	i += count
