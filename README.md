@@ -35,9 +35,9 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 
 ### Datasets
 
-- `synthetic_sugarbeat_random_weeds` - [Synthetic dataset - sugarbeets](http://www.diag.uniroma1.it/~labrococo/fds/syntheticdatasets.html) - [paper](http://www.diag.uniroma1.it//~pretto/papers/dpgp_IROS2017.pdf)
+- `synthetic_sugarbeat_random_weeds` - [Synthetic dataset - sugarbeets (380MB)](https://www.diag.uniroma1.it/~labrococo/fsd/syntheticdatasets.html) - [paper](http://www.diag.uniroma1.it//~pretto/papers/dpgp_IROS2017.pdf)
 
-- `ijrr_sugarbeets` - [Bonirob dataset - sugarbeets (5TB)](https://www.ipb.uni-bonn.de/datasets_IJRR2017/annotations/cropweed/) - [website](http://www.ipb.uni-bonn.de/data/sugarbeets2016/)
+- `ijrr_sugarbeets_part01` - [Bonirob dataset - sugarbeets (5TB)](https://www.ipb.uni-bonn.de/datasets_IJRR2017/annotations/cropweed/) - [website](http://www.ipb.uni-bonn.de/data/sugarbeets2016/)
 
 - `cwfid` - [CWFID - Crop Weed Field Image Dataset - carrots (80MB)](https://github.com/cwfid/dataset) - [paper](https://projet.liris.cnrs.fr/imagine/pub/proceedings/ECCV-2014/workshops/w23/paper26.pdf)
 
