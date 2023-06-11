@@ -19,8 +19,11 @@ This repository contains a keras AI model trained to detect crops and vegetation
 
 ## Repository file tree
 
-- The `crop_detection/` folder is a Python 3 module to import
-- The `converters/` folder contains scripts useful to build a dataset in the `dataset/` folder
+- `crop_detection/` is a Python 3 module that can be imported or installed
+- `converters/` contains scripts useful to build a dataset in the `dataset/` folder
+- `datasets_raw/` contains the raw datasets you will download
+- `datasets_raw/cyberorto/` contains images taken by MindsHub's cyberorto, along with scripts that generate labels based on pixel color heuristics (see the `generators/cyberorto_*.py` scripts)
+- `dataset/` will contain, once generated, test and train data with both images and labels
 
 ## Model name
 
