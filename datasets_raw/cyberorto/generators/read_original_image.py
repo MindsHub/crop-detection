@@ -17,7 +17,7 @@ def exportImageAndLabel(image, label):
 image = cv2.imread(getFilename("original"), cv2.IMREAD_UNCHANGED)
 
 # remove transparent parts
-image = image[np.r_[283:1891, 2159:3767]]
+image = image[np.r_[283:1891, 2159:3767], :, :3]
 
 # cv2.namedWindow("image", cv2.WINDOW_KEEPRATIO)
 # cv2.imshow("image", image)
