@@ -1,8 +1,4 @@
-import glob
-import shutil
-import cv2
-import os
-from setup_dataset_path import *
+from common_converters import *
 
 RGB_PATH = "datasets_raw/synthetic_sugarbeat_random_weeds/rgb/"
 GT_PATH = "datasets_raw/synthetic_sugarbeat_random_weeds/gt/"
@@ -11,18 +7,7 @@ TYPES = {
 	TEST: 125,
 }
 
-files = []
-for rgbFile in sorted(glob.glob(RGB_PATH + "*.png")):
-	_, filename = os.path.split(rgbFile)
-	gtFile = GT_PATH + filename
-	if os.path.exists(gtFile):
-		files.append((rgbFile, gtFile, filename))
-	else:
-		print(f"gt file does not exist: {gtFile}")
-		exit(1)
-
-def resizeImage(image):
-	return cv2.resize(image, (480, 352), interpolation=cv2.INTER_NEAREST)
+files = getFiles(RGB_PATH, GT_PATH)
 
 i = 0
 for typ, count in TYPES.items():

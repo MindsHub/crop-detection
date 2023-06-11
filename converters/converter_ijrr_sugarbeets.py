@@ -1,8 +1,4 @@
-import glob
-import os
-import shutil
-import cv2
-from setup_dataset_path import *
+from common_converters import *
 
 RGB_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/images/rgb/"
 IMAP_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotations/dlp/iMapCleaned/"
@@ -12,28 +8,7 @@ TYPES = {
 	TEST: 250,
 }
 
-def getRanges(arr):
-	res = []
-	begin = arr[0]
-	last = arr[0]
-	for e in arr[1:] + [1e100]:
-		if e != last + 1:
-			res.append(str(begin) if begin == last else f"{begin}-{last}")
-			begin = e
-		last = e
-	return res
-
-def resizeImage(image):
-	return cv2.resize(image, (480, 352), interpolation=cv2.INTER_NEAREST)
-
-
-files = []
-for rgbFile in sorted(glob.glob(RGB_PATH + "*.png")):
-	_, filename = os.path.split(rgbFile)
-	imapFile = IMAP_PATH + filename
-	if os.path.exists(imapFile):
-		files.append((rgbFile, imapFile, filename))
-
+files = getFiles(RGB_PATH, IMAP_PATH, ignoreUnexistingLabels=True)
 print(len(files))
 
 i = 0
