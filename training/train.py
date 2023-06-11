@@ -6,6 +6,10 @@ from sequence import CropWeedsSequence
 from tensorflow import keras
 import glob
 
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 # config
 IMAGE_SIZE = (352, 480)
 assert IMAGE_SIZE[0] % 32 == 0
