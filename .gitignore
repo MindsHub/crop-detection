@@ -6,6 +6,7 @@ testing_images/
 build/
 crop_detection.egg-info/
 dist/
+outImage*.png
 
 datasets_raw/*
 !datasets_raw/cyberorto/
