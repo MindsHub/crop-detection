@@ -29,9 +29,10 @@ This repository contains a keras AI model trained to detect crops and vegetation
 
 The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.hd5`
 - `INPUTHEIGHTxINPUTWIDTH` represents the size of the input image, e.g. `352x480`
-- `DATASETVERSION` is:
-	- `1` if the dataset used to train is composed of the *ijrr_sugarbeets* and *synthetic_sugarbeat_random_weeds* datasets
-	- `2` if the dataset used to train is composed of the *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds* and *cwfid* datasets
+- `DATASETVERSION` identifies what dataset used to train was composed of:
+	- `1`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*
+	- `2`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*
+	- `3`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*, *cyberorto*
 - `EPOCH` is the number of epochs the model was trained for, e.g. `10`
 
 ## Using the converters
