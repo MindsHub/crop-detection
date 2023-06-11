@@ -1,6 +1,4 @@
-import cv2
-import numpy as np
-from read_original_image import *
+from common_generators import *
 
 # the rest has some different colors that wouldn't be properly segmented
 image = image[:,402:4690]
