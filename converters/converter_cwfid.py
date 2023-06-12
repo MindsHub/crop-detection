@@ -5,7 +5,7 @@ IMAGES_PATH = "datasets_raw/cwfid/images/"
 LABELS_PATH = "datasets_raw/cwfid/masks/"
 
 TYPES = {
-	0: TRAIN,
+	0: TRAINING,
 	1: VALIDATION,
 	# the 2 is skipped
 }

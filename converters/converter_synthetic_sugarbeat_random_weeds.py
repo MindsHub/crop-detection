@@ -3,7 +3,7 @@ from common_converters import *
 RGB_PATH = "datasets_raw/synthetic_sugarbeat_random_weeds/rgb/"
 GT_PATH = "datasets_raw/synthetic_sugarbeat_random_weeds/gt/"
 TYPES = {
-	TRAIN: 500,
+	TRAINING: 500,
 	VALIDATION: 125,
 }
 

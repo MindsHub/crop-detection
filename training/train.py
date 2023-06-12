@@ -43,7 +43,8 @@ class CustomSaver(keras.callbacks.Callback):
 os.makedirs(CHECKPOINT_PATH, exist_ok=True)
 
 # create the Sequences for loading the dataset and start training
-trainSet = CropWeedsSequence(BATCH_SIZE, IMAGE_SIZE, "./dataset/train")
-testSet = CropWeedsSequence(BATCH_SIZE, IMAGE_SIZE, "./dataset/validation")
-print(f"Train set: {len(trainSet)} batches, {len(trainSet) * BATCH_SIZE} images\nTest set: {len(testSet)} batches, {len(testSet) * BATCH_SIZE} images")
+trainSet = CropWeedsSequence(BATCH_SIZE, IMAGE_SIZE, "./dataset/training")
+validationSet = CropWeedsSequence(BATCH_SIZE, IMAGE_SIZE, "./dataset/validation")
+print(f"Training set: {len(trainSet)} batches, {len(trainSet) * BATCH_SIZE} images")
+print(f"Validation set: {len(validationSet)} batches, {len(validationSet) * BATCH_SIZE} images")
 model.fit(trainSet, validation_data=testSet, initial_epoch=epochsAlreadyDone, epochs=epochsAlreadyDone+EPOCHS, callbacks=[CustomSaver()])

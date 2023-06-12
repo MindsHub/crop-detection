@@ -23,13 +23,13 @@ This repository contains a keras AI model trained to detect crops and vegetation
 - `converters/` contains scripts useful to build a dataset in the `dataset/` folder
 - `datasets_raw/` contains the raw datasets you will download
 - `datasets_raw/cyberorto/` contains images taken by MindsHub's cyberorto, along with scripts that generate labels based on pixel color heuristics (see the `generators/cyberorto_*.py` scripts)
-- `dataset/` will contain, once generated, test and train data with both images and labels
+- `dataset/` will contain, once generated, training and validation data with both images and labels
 
 ## Model name
 
 The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.hd5`
 - `INPUTHEIGHTxINPUTWIDTH` represents the size of the input image, e.g. `352x480`
-- `DATASETVERSION` identifies what dataset used to train was composed of:
+- `DATASETVERSION` identifies the raw datasets used to create the training dataset:
 	- `1`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*
 	- `2`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*
 	- `3`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*, *cyberorto*
@@ -37,7 +37,7 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 
 ## Using the converters
 
-Choose some datasets you want to use from the list below, then download them and unpack them in the `datasets_raw/` subfolder (which you will need to create) in the repo's root. Then you can run `python3 converters/converter_DATASET_NAME.py` to create (part of) a training dataset with both `train/` and `test/` images in the `dataset/` subfolder.
+Choose some datasets you want to use from the list below, then download them and unpack them in the `datasets_raw/` subfolder (which you will need to create) in the repo's root. Then you can run `python3 converters/converter_DATASET_NAME.py` to create (part of) a training dataset with both `training/` and `validation/` images in the `dataset/` subfolder.
 
 ## Sources
 
