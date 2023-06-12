@@ -6,7 +6,7 @@ LABELS_PATH = "datasets_raw/cyberorto/labels/"
 
 TYPES = {
     0: TRAIN,
-    1: TEST,
+    1: VALIDATION,
     # the 2 is skipped
 }
 # currently there is only one image, from which only 144 parts can be taken

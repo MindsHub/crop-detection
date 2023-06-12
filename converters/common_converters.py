@@ -9,13 +9,13 @@ if not os.path.exists("./.git/") or not os.path.exists("./crop_detection/"):
 
 DATASET_PATH = "dataset/{}/{}/"
 TRAIN = "train"
-TEST = "test"
+VALIDATION = "validation"
 IMAGES = "images"
 LABELS = "labels"
 WIDTH = 480
 HEIGHT = 352
 
-for typ1 in [TRAIN, TEST]:
+for typ1 in [TRAIN, VALIDATION]:
 	for typ2 in [IMAGES, LABELS]:
 		os.makedirs(DATASET_PATH.format(typ1, typ2), exist_ok=True)
 

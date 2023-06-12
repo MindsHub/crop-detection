@@ -4,7 +4,7 @@ RGB_PATH = "datasets_raw/synthetic_sugarbeat_random_weeds/rgb/"
 GT_PATH = "datasets_raw/synthetic_sugarbeat_random_weeds/gt/"
 TYPES = {
 	TRAIN: 500,
-	TEST: 125,
+	VALIDATION: 125,
 }
 
 files = getFiles(RGB_PATH, GT_PATH)

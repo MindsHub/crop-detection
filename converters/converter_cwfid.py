@@ -6,7 +6,7 @@ LABELS_PATH = "datasets_raw/cwfid/masks/"
 
 TYPES = {
 	0: TRAIN,
-	1: TEST,
+	1: VALIDATION,
 	# the 2 is skipped
 }
 TYPES_DISTRIBUTION = [0] * 1000 + [1] * 250 + [2] * 10

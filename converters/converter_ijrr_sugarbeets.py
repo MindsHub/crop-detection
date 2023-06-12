@@ -5,7 +5,7 @@ IMAP_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotation
 COLOR_PATH = "datasets_raw/ijrr_sugarbeets_2016_annotations/CKA_160523/annotations/dlp/colorCleaned/"
 TYPES = {
 	TRAIN: 1000,
-	TEST: 250,
+	VALIDATION: 250,
 }
 
 files = getFiles(RGB_PATH, IMAP_PATH, ignoreUnexistingLabels=True)
