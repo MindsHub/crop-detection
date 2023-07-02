@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1' # -1 = CPU, 0 = GPU0
+os.environ['CUDA_VISIBLE_DEVICES'] = '0' # -1 = CPU, 0 = GPU0
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 from tensorflow import keras
@@ -16,7 +16,7 @@ INPUT_IMAGES = [
 #	"./testing_images/z.jpg",
 ]
 CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
-EPOCHS = [6]#range(1,11)
+EPOCHS = [4]#range(1,11)
 
 for EPOCH in EPOCHS:
 	print(f"Epoch {EPOCH}: ", end="", flush=True)
