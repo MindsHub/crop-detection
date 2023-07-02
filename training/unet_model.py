@@ -1,6 +1,8 @@
 from tensorflow import keras
 from keras import layers
 
+ALPOSTODELTRE = 4
+
 def unetXceptionModel(img_size, num_classes):
 	"""
 	Taken from https://keras.io/examples/vision/oxford_pets_image_segmentation/

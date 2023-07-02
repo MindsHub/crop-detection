@@ -5,9 +5,12 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 #os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true' # necessary to solve some out of memory issues
 
 from unet_model import unetXceptionModel
-from sequence import CropWeedsSequence
+from dataset import getDataset
 from tensorflow import keras
 import glob
+import numpy as np
+import tensorflow as tf
+from sequence import CropWeedsSequence
 
 # config
 IMAGE_SIZE = (352, 480)
@@ -43,8 +46,8 @@ class CustomSaver(keras.callbacks.Callback):
 os.makedirs(CHECKPOINT_PATH, exist_ok=True)
 
 # create the Sequences for loading the dataset and start training
-trainSet = CropWeedsSequence(BATCH_SIZE, IMAGE_SIZE, "./dataset/training")
-validationSet = CropWeedsSequence(BATCH_SIZE, IMAGE_SIZE, "./dataset/validation")
+trainSet = getDataset("./dataset/training", IMAGE_SIZE, BATCH_SIZE)
+validationSet = getDataset("./dataset/validation", IMAGE_SIZE, BATCH_SIZE)
 print(f"Training set: {len(trainSet)} batches, {len(trainSet) * BATCH_SIZE} images")
 print(f"Validation set: {len(validationSet)} batches, {len(validationSet) * BATCH_SIZE} images")
-model.fit(trainSet, validation_data=testSet, initial_epoch=epochsAlreadyDone, epochs=epochsAlreadyDone+EPOCHS, callbacks=[CustomSaver()])
+model.fit(trainSet, validation_data=validationSet, initial_epoch=epochsAlreadyDone, epochs=epochsAlreadyDone+EPOCHS, callbacks=[CustomSaver()])
