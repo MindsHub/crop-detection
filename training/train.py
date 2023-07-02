@@ -8,9 +8,6 @@ from unet_model import unetXceptionModel
 from dataset import getDataset
 from tensorflow import keras
 import glob
-import numpy as np
-import tensorflow as tf
-from sequence import CropWeedsSequence
 
 # config
 IMAGE_SIZE = (352, 480)
