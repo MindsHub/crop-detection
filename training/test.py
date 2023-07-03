@@ -16,7 +16,7 @@ INPUT_IMAGES = [
 #	"./testing_images/z.jpg",
 ]
 CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
-EPOCHS = [4]#range(1,11)
+EPOCHS = range(1,10)
 
 for EPOCH in EPOCHS:
 	print(f"Epoch {EPOCH}: ", end="", flush=True)
@@ -41,5 +41,5 @@ for EPOCH in EPOCHS:
 		# outImage[352*3:352*4, 480*i:480*(i+1), :] = cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB)
 
 	print("Writing", end=" ", flush=True)
-	cv2.imwrite(f"outImage{EPOCH}.png", outImage)
+	cv2.imwrite(f"{CHECKPOINT_PATH}/outImage{EPOCH}.png", outImage)
 	print("Done!")

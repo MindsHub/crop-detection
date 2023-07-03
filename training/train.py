@@ -18,9 +18,9 @@ CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
 
 # hyperparameters (batchSize=15, learningRate=0.001) are good for
 # the first 5 epochs, then use (batchSize=30, learningRate=0.0001)
-BATCH_SIZE = 15
-EPOCHS = 5
-LEARNING_RATE = 0.001
+BATCH_SIZE = 16
+EPOCHS = 15
+LEARNING_RATE = 0.0005
 
 # calculate epochs already done and load model
 epochsAlreadyDone = sorted(glob.glob(CHECKPOINT_PATH + "/model_*.hd5"))
@@ -38,13 +38,13 @@ keras.backend.set_value(model.optimizer.learning_rate, LEARNING_RATE)
 # saver class that saves the model with the correct name at the end of each epoch
 class CustomSaver(keras.callbacks.Callback):
 	def on_epoch_end(self, epoch, logs={}):
-		print("Saving model for epoch", epoch)
+		print("\nSaving model for epoch", epoch + 1)
 		self.model.save(CHECKPOINT_PATH + f"/model_{epoch + 1}.hd5")
 os.makedirs(CHECKPOINT_PATH, exist_ok=True)
 
 # create the Sequences for loading the dataset and start training
-trainSet = getDataset("./dataset/training", IMAGE_SIZE, BATCH_SIZE)
-validationSet = getDataset("./dataset/validation", IMAGE_SIZE, BATCH_SIZE)
+trainSet = getDataset(True, BATCH_SIZE)
+validationSet = getDataset(False, BATCH_SIZE)
 print(f"Training set: {len(trainSet)} batches, {len(trainSet) * BATCH_SIZE} images")
 print(f"Validation set: {len(validationSet)} batches, {len(validationSet) * BATCH_SIZE} images")
 model.fit(trainSet, validation_data=validationSet, initial_epoch=epochsAlreadyDone, epochs=epochsAlreadyDone+EPOCHS, callbacks=[CustomSaver()])
