@@ -59,6 +59,15 @@ Choose some datasets you want to use from the list below, then download them and
   - [paper](https://projet.liris.cnrs.fr/imagine/pub/proceedings/ECCV-2014/workshops/w23/paper26.pdf)
   - run `git clone https://github.com/cwfid/dataset` in the `datasets_raw/` subfolder
 
+- `cyberorto`
+  - images taken by MindsHub's Cyberorto
+  - there are some scripts that generate labels based on pixel color heuristics (see the `datasets_raw/cyberorto/generators/cyberorto_*.py` scripts)
+
+- `ews`
+  - [Eschikon Wheat Segmentation (50MB)](https://www.research-collection.ethz.ch/handle/20.500.11850/512332)
+  - [paper](https://doi.org/10.3389/fpls.2021.774068)
+  - download [EWS-Dataset.zip](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/512332/EWS-Dataset.zip), move it in the `datasets_raw/` subfolder, unpack it and finally rename the newly created `EWS-Dataset` folder to `ews`
+
 - [~~Aberystwyth Leaf Evaluation Dataset (62GB)~~](https://zenodo.org/record/168158#.WDcbSB8zpZU) not useful but still noteworthy
 
 ### Tutorials & techniques
