@@ -45,7 +45,7 @@ def flipBoth(image, label, number, flipCode):
 
 def getFiles(imagesPath, labelsPath, editFilename=lambda x: x, ignoreUnexistingLabels=False):
 	files = []
-	for imageFile in sorted(glob.glob(os.path.join(imagesPath, "*.png"))):
+	for imageFile in glob.glob(os.path.join(imagesPath, "*.png")):
 		_, filename = os.path.split(imageFile)
 		filename = editFilename(filename)
 		labelFile = os.path.join(labelsPath, filename)
