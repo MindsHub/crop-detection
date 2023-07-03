@@ -19,22 +19,19 @@ def dataAugmentation():
 
 	def labelLayers():
 		# these ALL require the seed to be set!
-		return [cv_layers.RandomAugmentationPipeline(
-			layers=[
-				layers.RandomFlip(seed=seed),
-				layers.RandomRotation((-1, 1), seed=seed),
-				layers.RandomZoom((-0.2, 0.2), seed=seed),
-				cv_layers.RandomShear(0.2, 0.2, seed=seed),
-			],
-			augmentations_per_image=4,
-			rate=0.5,
-			seed=seed,
-			auto_vectorize=True,
-		)]
+		return [
+			layers.RandomFlip(seed=seed),
+			layers.RandomRotation((-1, 1), seed=seed),
+			layers.RandomZoom((-0.2, 0.2), seed=seed),
+			cv_layers.RandomShear(0.2, 0.2, seed=seed),
+		]
 
 	def imageLayers():
 		return labelLayers() + [
-			cv_layers.RandAugment([0, 255], geometric=False)
+			layers.RandomContrast(0.2),
+			layers.RandomBrightness((-0.2, 0.2)),
+			cv_layers.RandomSaturation((0.3, 0.6)),
+			cv_layers.RandomColorDegeneration(0.2),
 		]
 
 	imageMapper = keras.Sequential(imageLayers())
