@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0' # -1 = CPU, 0 = GPU0
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1' # -1 = CPU, 0 = GPU0
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 from tensorflow import keras
@@ -16,11 +16,17 @@ INPUT_IMAGES = [
 #	"./testing_images/z.jpg",
 ]
 CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
-EPOCHS = range(1,10)
 
-for EPOCH in EPOCHS:
+for EPOCH in range(1, 100000):
+	modelPath = f"{CHECKPOINT_PATH}/model_{EPOCH}.hd5"
+	imagePath = f"{CHECKPOINT_PATH}/outImage{EPOCH}.png"
+	if not os.path.exists(modelPath):
+		break
+	if os.path.exists(imagePath):
+		continue
+
 	print(f"Epoch {EPOCH}: ", end="", flush=True)
-	model = keras.models.load_model(f"{CHECKPOINT_PATH}/model_{EPOCH}.hd5")
+	model = keras.models.load_model(modelPath)
 	outImage = np.zeros((352 * 2, 480 * len(INPUT_IMAGES), 3), dtype=np.uint8)
 
 	for i, path in enumerate(INPUT_IMAGES):
@@ -41,5 +47,5 @@ for EPOCH in EPOCHS:
 		# outImage[352*3:352*4, 480*i:480*(i+1), :] = cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB)
 
 	print("Writing", end=" ", flush=True)
-	cv2.imwrite(f"{CHECKPOINT_PATH}/outImage{EPOCH}.png", outImage)
+	cv2.imwrite(imagePath, outImage)
 	print("Done!")
