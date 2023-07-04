@@ -32,7 +32,7 @@ The model name is like this: `model_INPUTHEIGHTxINPUTWIDTH_DATASETVERSION_EPOCH.
 - `DATASETVERSION` identifies the raw datasets used to create the training dataset:
 	- `1`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*
 	- `2`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*
-	- `3`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*, *cyberorto*
+	- `3`: *ijrr_sugarbeets*, *synthetic_sugarbeat_random_weeds*, *cwfid*, *cyberorto*, *ews*
 - `EPOCH` is the number of epochs the model was trained for, e.g. `10`
 
 ## Using the converters
@@ -68,7 +68,10 @@ Choose some datasets you want to use from the list below, then download them and
   - [paper](https://doi.org/10.3389/fpls.2021.774068)
   - download [EWS-Dataset.zip](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/512332/EWS-Dataset.zip), move it in the `datasets_raw/` subfolder, unpack it and finally rename the newly created `EWS-Dataset` folder to `ews`
 
+#### Others (not used)
+
 - [~~Aberystwyth Leaf Evaluation Dataset (62GB)~~](https://zenodo.org/record/168158#.WDcbSB8zpZU) not useful but still noteworthy
+- [~~PlantVillage Dataset~~](https://github.com/spMohanty/PlantVillage-Dataset) leaf classification not on soil
 
 ### Tutorials & techniques
 
