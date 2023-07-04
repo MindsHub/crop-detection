@@ -76,7 +76,7 @@ def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 			modelInput = cv2.resize(modelInput, (modelInputShape[1], modelInputShape[0]))
 		modelInputs.append(modelInput)
 
-	modelOutputs = model.predict(np.stack(modelInputs, axis=0))
+	modelOutputs = model.predict(np.stack(modelInputs, axis=0), verbose=0)
 	result = np.empty(imageShape, dtype=np.uint8)
 	for i, (xFrom, yFrom, pLeft, pTop, pRight, pBottom) in enumerate(segmentationRectanglesCoordinates()):
 		result[yFrom+pTop:yFrom+modelHeight-pBottom, xFrom+pLeft:xFrom+modelWidth-pRight] \
