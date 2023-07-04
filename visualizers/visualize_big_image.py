@@ -7,6 +7,7 @@ from crop_detection import segmentImage
 
 import glob
 import cv2
+import numpy as np
 
 IMAGES = (
     glob.glob("./datasets_raw/cyberorto/original/*") +
@@ -20,14 +21,35 @@ imageBasePath = f"{CHECKPOINT_PATH}/bigImage{EPOCH}"
 
 for imagePath in IMAGES:
     folders, filename = os.path.split(imagePath)
-    segmentedPath = "_".join([
+    outputPath = "_".join([
         imageBasePath,
         folders.replace(".", "").replace("/", "_"),
-        filename.replace(".jpg", ".png")
+        filename.replace(".png", ".jpg")
     ])
-    print(segmentedPath)
+    print(outputPath)
 
-    segmented = segmentImage(imagePath, modelPath=modelPath)
-    if not cv2.imwrite(segmentedPath, segmented):
-        print("Unable to save image to", segmentedPath)
+    image = cv2.imread(imagePath)
+    segmented = segmentImage(image, modelPath=modelPath)
+    out2 = np.array((segmented > 128) * 255, dtype=np.uint8)
+    out3 = out2
+
+    erodeDilateKernel = np.ones((3, 3), dtype=np.uint8)
+    out3 = cv2.dilate(out3, erodeDilateKernel, iterations=3)
+    out3 = cv2.erode(out3, erodeDilateKernel, iterations=3)
+
+    erodeDilateKernel = np.ones((2, 2), dtype=np.uint8)
+    out3 = cv2.erode(out3, erodeDilateKernel, iterations=3)
+    out3 = cv2.dilate(out3, erodeDilateKernel, iterations=3)
+
+    overlay = cv2.addWeighted(cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB), 0.4, image, 0.6, 0)
+
+    h, w, c = image.shape
+    result = np.empty((h*2, w*2, c))
+    result[:h, :w, :] = image
+    result[:h, w:, :] = cv2.cvtColor(segmented, cv2.COLOR_GRAY2RGB)
+    result[h:, w:, :] = cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB)
+    result[h:, :w, :] = overlay
+
+    if not cv2.imwrite(outputPath, result):
+        print("Unable to save image to", outputPath)
         break
