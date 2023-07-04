@@ -21,7 +21,7 @@ H, W = 352, 480
 def readImage(path):
 	image = cv2.imread(path)
 	h, w, c = image.shape
-	return image[h//2-H//2:h//2+H//2, w//2-W//2:w//2+W//2, :]
+	return image[h//2-H//2:h//2+H//2, :W, :]
 
 images = np.stack([readImage(path) for path in INPUT_IMAGES])
 
@@ -34,7 +34,7 @@ for EPOCH in range(1, 100000):
 		continue
 
 	model = keras.models.load_model(modelPath)
-	outImage = np.zeros((H * 4, W * len(INPUT_IMAGES), 3), dtype=np.uint8)
+	outImage = np.zeros((H * 5, W * len(INPUT_IMAGES), 3), dtype=np.uint8)
 
 	out = model.predict(images)
 	for i in range(len(INPUT_IMAGES)):
@@ -50,10 +50,13 @@ for EPOCH in range(1, 100000):
 		out3 = cv2.erode(out3, erodeDilateKernel, iterations=3)
 		out3 = cv2.dilate(out3, erodeDilateKernel, iterations=3)
 
+		overlay = cv2.addWeighted(cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB), 0.4, images[i], 0.6, 0)
+
 		outImage[   :H,   W*i:W*(i+1), :] = images[i]
 		outImage[H  :H*2, W*i:W*(i+1), :] = cv2.cvtColor(out1, cv2.COLOR_GRAY2RGB)
 		outImage[H*2:H*3, W*i:W*(i+1), :] = cv2.cvtColor(out2, cv2.COLOR_GRAY2RGB)
 		outImage[H*3:H*4, W*i:W*(i+1), :] = cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB)
+		outImage[H*4:H*5, W*i:W*(i+1), :] = overlay
 
 	cv2.imwrite(imagePath, outImage)
 	print("Done writing epoch", EPOCH)
