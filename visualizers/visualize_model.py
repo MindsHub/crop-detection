@@ -21,7 +21,8 @@ H, W = 352, 480
 def readImage(path):
 	image = cv2.imread(path)
 	h, w, c = image.shape
-	return image[h//2-H//2:h//2+H//2, :W, :]
+	# image[h//2-H//2:h//2+H//2, w//2-W//2:w//2+W//2, :]
+	return image[:H, w//2-W//2:w//2+W//2, :]
 
 images = np.stack([readImage(path) for path in INPUT_IMAGES])
 
