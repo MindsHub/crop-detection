@@ -80,14 +80,3 @@ def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 			= modelOutput[0, pTop:modelHeight-pBottom, pLeft:modelWidth-pRight, 1] * 255
 
 	return result
-
-if __name__ == "__main__":
-	IMAGES = ["bigimage1.png", "bigimage2.jpg", "bigimage3.png", "bigimage4.jpg", "bigimage5.png"]
-	for image in IMAGES:
-		segmented = segmentImage(
-			imageOrImagePath="../training/testing_images/" + image,
-			modelPath="../training/checkpoint_352x480_dataset2/model_7.hd5",
-			padding=20
-		)
-
-		cv2.imwrite("bis_" + image.replace(".jpg", ".png"), segmented)
