@@ -68,15 +68,18 @@ def segmentImage(imageOrImagePath, modelPath=_DEFAULT_MODEL_PATH, padding=20):
 
 				yield (xFrom, yFrom, pLeft, pTop, pRight, pBottom)
 
-	result = np.empty(imageShape, dtype=np.uint8)
+	modelInputs = []
 	for xFrom, yFrom, pLeft, pTop, pRight, pBottom in segmentationRectanglesCoordinates():
-		print(xFrom, yFrom, pLeft, pTop, pRight, pBottom)
+		#print(xFrom, yFrom, pLeft, pTop, pRight, pBottom)
 		modelInput = image[yFrom:yFrom+modelHeight, xFrom:xFrom+modelWidth, :]
 		if modelInputShape != modelOutputShape:
 			modelInput = cv2.resize(modelInput, (modelInputShape[1], modelInputShape[0]))
-		modelOutput = model.predict(np.expand_dims(modelInput, axis=0))
+		modelInputs.append(modelInput)
 
+	modelOutputs = model.predict(np.stack(modelInputs, axis=0))
+	result = np.empty(imageShape, dtype=np.uint8)
+	for i, (xFrom, yFrom, pLeft, pTop, pRight, pBottom) in enumerate(segmentationRectanglesCoordinates()):
 		result[yFrom+pTop:yFrom+modelHeight-pBottom, xFrom+pLeft:xFrom+modelWidth-pRight] \
-			= modelOutput[0, pTop:modelHeight-pBottom, pLeft:modelWidth-pRight, 1] * 255
+			= modelOutputs[i, pTop:modelHeight-pBottom, pLeft:modelWidth-pRight, 1] * 255
 
 	return result
