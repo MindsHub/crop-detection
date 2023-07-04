@@ -14,7 +14,7 @@ setup(
     packages = find_packages(),
     package_dir = {"": "."},
     package_data = {
-        "": ["model*/*", "model*/*/*"]
+        "": ["model.hd5/*", "model.hd5/*/*"]
     },
     install_requires = [
         'tensorflow>=2.4.0',

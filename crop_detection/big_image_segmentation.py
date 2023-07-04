@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import os
 
-_DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model_352x480_2_10.hd5"
+_DEFAULT_MODEL_PATH = os.path.dirname(os.path.abspath(__file__)) + "/model.hd5"
 _models = {}
 
 def _getModel(modelPath):
