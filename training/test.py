@@ -5,6 +5,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from tensorflow import keras
 import numpy as np
 import cv2
+import glob
 
 INPUT_IMAGES = [
 	"./dataset/validation/images/A_000504.png",
@@ -12,13 +13,17 @@ INPUT_IMAGES = [
 	"./dataset/validation/images/cwfid_001_scaled_.png",
 	"./dataset/validation/images/cyberorto_001_cropped_2680_2499_3160_2851.png",
 	"./dataset/training/images/FPWW0310040_RGB1_20191206_140940_6.png",
-#	"./testing_images/x.jpg",
-#	"./testing_images/y.jpg",
-#	"./testing_images/z.jpg",
-]
-CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
+] + glob.glob("./training/test_images/*")
 
-images = np.stack([cv2.imread(path)[:352, :, :] for path in INPUT_IMAGES])
+CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
+H, W = 352, 480
+
+def readImage(path):
+	image = cv2.imread(path)
+	h, w, c = image.shape
+	return image[h//2-H//2:h//2+H//2, w//2-W//2:w//2+W//2, :]
+
+images = np.stack([readImage(path) for path in INPUT_IMAGES])
 
 for EPOCH in range(1, 100000):
 	modelPath = f"{CHECKPOINT_PATH}/model_{EPOCH}.hd5"
@@ -28,24 +33,27 @@ for EPOCH in range(1, 100000):
 	if os.path.exists(imagePath):
 		continue
 
-	print(f"Epoch {EPOCH}: ", end="", flush=True)
 	model = keras.models.load_model(modelPath)
-	outImage = np.zeros((352 * 4, 480 * len(INPUT_IMAGES), 3), dtype=np.uint8)
+	outImage = np.zeros((H * 4, W * len(INPUT_IMAGES), 3), dtype=np.uint8)
 
 	out = model.predict(images)
 	for i in range(len(INPUT_IMAGES)):
 		out1 = np.array(out[i,:,:,1] * 255, dtype=np.uint8)
 		out2 = np.array((out1 > 128) * 255, dtype=np.uint8)
+		out3 = out2
+
+		erodeDilateKernel = np.ones((3, 3), dtype=np.uint8)
+		out3 = cv2.dilate(out3, erodeDilateKernel, iterations=3)
+		out3 = cv2.erode(out3, erodeDilateKernel, iterations=3)
 
 		erodeDilateKernel = np.ones((2, 2), dtype=np.uint8)
-		out3 = cv2.erode(out2, erodeDilateKernel, iterations=3)
+		out3 = cv2.erode(out3, erodeDilateKernel, iterations=3)
 		out3 = cv2.dilate(out3, erodeDilateKernel, iterations=3)
 
-		outImage[     :352,   480*i:480*(i+1), :] = images[i]
-		outImage[352  :352*2, 480*i:480*(i+1), :] = cv2.cvtColor(out1, cv2.COLOR_GRAY2RGB)
-		outImage[352*2:352*3, 480*i:480*(i+1), :] = cv2.cvtColor(out2, cv2.COLOR_GRAY2RGB)
-		outImage[352*3:352*4, 480*i:480*(i+1), :] = cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB)
+		outImage[   :H,   W*i:W*(i+1), :] = images[i]
+		outImage[H  :H*2, W*i:W*(i+1), :] = cv2.cvtColor(out1, cv2.COLOR_GRAY2RGB)
+		outImage[H*2:H*3, W*i:W*(i+1), :] = cv2.cvtColor(out2, cv2.COLOR_GRAY2RGB)
+		outImage[H*3:H*4, W*i:W*(i+1), :] = cv2.cvtColor(out3, cv2.COLOR_GRAY2RGB)
 
-	print("Writing", end=" ", flush=True)
 	cv2.imwrite(imagePath, outImage)
-	print("Done!")
+	print("Done writing epoch", EPOCH)
