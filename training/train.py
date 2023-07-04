@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0' # -1 = CPU, 0 = GPU0
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1' # -1 = CPU, 0 = GPU0
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 #os.environ['TF_ENABLE_AUTO_MIXED_PRECISION'] = '1' # if it worked it may help reduce memory footprint
 #os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true' # necessary to solve some out of memory issues
@@ -18,12 +18,15 @@ CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
 
 # hyperparameters (batchSize=15, learningRate=0.001) are good for
 # the first 5 epochs, then use (batchSize=30, learningRate=0.0001)
-BATCH_SIZE = 16
+BATCH_SIZE = 40
 EPOCHS = 15
-LEARNING_RATE = 0.0005
+LEARNING_RATE = 0.00003
 
 # calculate epochs already done and load model
-epochsAlreadyDone = sorted(glob.glob(CHECKPOINT_PATH + "/model_*.hd5"))
+epochsAlreadyDone = sorted(
+	glob.glob(CHECKPOINT_PATH + "/model_*.hd5"),
+	key=lambda e: int(e[len(CHECKPOINT_PATH) + 7:-4])
+)
 if len(epochsAlreadyDone) == 0:
 	epochsAlreadyDone = 0
 	print("No epochs already done, starting from the beginning")
@@ -47,4 +50,10 @@ trainSet = getDataset(True, BATCH_SIZE)
 validationSet = getDataset(False, BATCH_SIZE)
 print(f"Training set: {len(trainSet)} batches, {len(trainSet) * BATCH_SIZE} images")
 print(f"Validation set: {len(validationSet)} batches, {len(validationSet) * BATCH_SIZE} images")
-model.fit(trainSet, validation_data=validationSet, initial_epoch=epochsAlreadyDone, epochs=epochsAlreadyDone+EPOCHS, callbacks=[CustomSaver()])
+model.fit(
+	trainSet,
+	validation_data=validationSet,
+	initial_epoch=epochsAlreadyDone,
+	epochs=epochsAlreadyDone+EPOCHS,
+	callbacks=[CustomSaver()]
+)
