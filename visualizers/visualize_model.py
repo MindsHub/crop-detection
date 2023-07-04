@@ -34,7 +34,7 @@ for EPOCH in range(1, 100000):
 		continue
 
 	model = keras.models.load_model(modelPath)
-	outImage = np.zeros((H * 5, W * len(INPUT_IMAGES), 3), dtype=np.uint8)
+	outImage = np.empty((H * 5, W * len(INPUT_IMAGES), 3), dtype=np.uint8)
 
 	out = model.predict(images)
 	for i in range(len(INPUT_IMAGES)):

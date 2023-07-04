@@ -14,7 +14,7 @@ sizes = stats[:, -1][1:]
 nb_blobs -= 1
 min_size = 100
 
-withoutSmallConnectedComponents = np.zeros((segmented.shape), bool)
+withoutSmallConnectedComponents = np.zeros(segmented.shape, bool)
 x = 0
 for blob in range(nb_blobs):
     if sizes[blob] >= min_size:

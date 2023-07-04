@@ -14,7 +14,7 @@ for images, labels in d:
     break
 
 h, w, c = images.shape[1:]
-res = np.zeros((h * 4, w * (batch_size // 2), c), dtype=np.float32)
+res = np.empty((h * 4, w * (batch_size // 2), c), dtype=np.float32)
 
 for b in range(batch_size // 2):
     y = w * b
