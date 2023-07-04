@@ -2,7 +2,7 @@
 
 This repository contains a keras AI model trained to detect crops and vegetation in images of vegetable-gardens ("orto" in italiano) taken perpendicular to the terrain. The model is accessible via an installable python module: `crop_detection`.
 
-<img width="500px" src="./example_result.png"/>
+<img src="./example_result.png"/>
 
 ## Requirements & module installation
 
