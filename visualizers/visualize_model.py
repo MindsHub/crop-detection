@@ -13,7 +13,7 @@ INPUT_IMAGES = [
 	"./dataset/validation/images/cwfid_001_scaled_.png",
 	"./dataset/validation/images/cyberorto_001_cropped_2680_2499_3160_2851.png",
 	"./dataset/training/images/FPWW0310040_RGB1_20191206_140940_6.png",
-] + glob.glob("./training/test_images/*")
+] + glob.glob("./visualizers/test_images/*")
 
 CHECKPOINT_PATH = "./checkpoint_352x480_dataset3"
 H, W = 352, 480

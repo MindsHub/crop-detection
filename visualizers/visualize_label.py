@@ -3,7 +3,7 @@ import numpy as np
 import PIL.ImageOps
 import PIL.Image
 
-FILE = "./dataset/test/{}/cyberorto_001_cropped_2680_2499_3160_2851.png"
+FILE = "./dataset/training/{}/FPWW0310081_RGB1_20200224_132013_6.png"
 
 image = cv2.imread(FILE.format("images"), cv2.IMREAD_UNCHANGED)
 cv2.imshow("Image", image)
